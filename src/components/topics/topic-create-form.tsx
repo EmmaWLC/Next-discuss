@@ -13,7 +13,7 @@ import * as actions from "@/actions";
 
 export default function TopicCreateForm() {
   const [formState, action] = useFormState(actions.createTopic, {
-    errors: {}
+    errors: {},
   });
 
   return (
@@ -31,7 +31,7 @@ export default function TopicCreateForm() {
               labelPlacement="outside"
               placeholder="Name"
               isInvalid={!!formState.errors.name}
-              errorMessage={formState.errors.name?.join(', ')}
+              errorMessage={formState.errors.name?.join(", ")}
             />
             <Textarea
               name="description"
@@ -39,8 +39,12 @@ export default function TopicCreateForm() {
               labelPlacement="outside"
               placeholder="Describe your topic"
               isInvalid={!!formState.errors.description}
-              errorMessage={formState.errors.description?.join(', ')}
+              errorMessage={formState.errors.description?.join(", ")}
             />
+
+            {formState.errors._form? (<div className="rounded p-2 bg-red-200 border border-red-400">
+              {formState.errors._form?.join(', ')}
+            </div>):null}
             <Button type="submit">Submit</Button>
           </div>
         </form>
